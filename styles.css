@@ -1,0 +1,48 @@
+html, body, #container {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      padding-top: 50px;
+    }
+
+    #map {
+      width: auto;
+      height: 100%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.55);
+    }
+
+    #sidebar {
+      width: 33%;
+      height: 100%;
+      max-width: 100%;
+      float: left;
+      -webkit-transition: all 0.25s ease-out;
+      -moz-transition: all 0.25s ease-out;
+      transition: all 0.25s ease-out;
+    }
+
+    #street_view {
+      height: 66%;
+      background-color: #404040;
+    }
+
+    .navbar .navbar-brand {
+      font-weight: bold;
+      font-size: 25px;
+      color: #FFFFFF;
+    }
+
+    .navbar {
+      background-image: linear-gradient(to bottom, #57068c 0%, #19004e 100%);
+    }
+
+    .navbar-inverse .navbar-nav>li>a {
+      color: #fff;
+    }
+
+    .slider_panel {
+    	padding: 15px;
+    }
