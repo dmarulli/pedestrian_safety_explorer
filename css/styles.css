@@ -25,8 +25,12 @@ html, body, #container {
     }
 
     #street_view {
-      height: 66%;
+      height: 60%;
       background-color: #404040;
+    }
+
+    #dashboard {
+      height: 40%;
     }
 
     .navbar .navbar-brand {
@@ -45,4 +49,9 @@ html, body, #container {
 
     .slider_panel {
     	padding: 15px;
+    }
+
+    .button {
+      text-align: center;
+      padding: 15px;
     }

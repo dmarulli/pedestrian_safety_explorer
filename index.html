@@ -1,167 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head profile="http://www.w3.org/2005/10/profile">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-
-    <style type="cartocss/text" id="nbt_nta_css">
-/** choropleth visualization */
-
-#nbt_nta{
-  polygon-fill: #EDF8FB;
-  polygon-opacity: 0.5;
-  line-color: #FFF;
-  line-width: 0;
-}
-#nbt_nta [ pl_cg <= 6] {
-   polygon-fill: #006D2C;
-}
-#nbt_nta [ pl_cg <= 5] {
-   polygon-fill: #2CA25F;
-}
-#nbt_nta [ pl_cg <= 4] {
-   polygon-fill: #66C2A4;
-}
-#nbt_nta [ pl_cg <= 3] {
-   polygon-fill: #B2E2E2;
-}
-#nbt_nta [ pl_cg <= 2] {
-   polygon-fill: #EDF8FB;
-}
-#nbt_nta [ pl_cg <= 1] {
-   polygon-opacity: 0;
-}
-</style>
-
-<style type="cartocss/text" id="full_crash_yearly_w_activity_css">
-/** simple visualization */
-
-#full_crash_yearly_w_activity{
-  marker-fill-opacity: .75;
-  marker-line-color: #FFF;
-  marker-line-width: 0;
-  marker-placement: point;
-  marker-type: ellipse;
-  marker-width: 5;
-  marker-fill: #FF6600;
-  marker-allow-overlap: true;
-}
-</style>
-
-  </head>
-
-  <body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <div class="navbar-icon-container">
-            <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a>
-            <a href="#" class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i class="fa fa-search fa-lg white"></i></a>
-          </div>
-          <a class="navbar-brand" >Pedestrian Safety Explorer</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <!-- <form class="navbar-form navbar-right" role="search">
-            <div class="form-group has-feedback">
-                <span class="twitter-typeahead" style="position: static; display: block; direction: ltr;"><input id="searchbox" type="text" placeholder="Search" class="form-control tt-input" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;"><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none; right: auto;"><div class="tt-dataset-Boroughs"></div><div class="tt-dataset-Theaters"></div><div class="tt-dataset-Museums"></div><div class="tt-dataset-GeoNames"></div></span></span>
-                <span id="searchicon" class="fa fa-search form-control-feedback"></span>
+   <head profile="http://www.w3.org/2005/10/profile">
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/styles.css">
+      <style type="cartocss/text" id="nbt_nta_css">
+         /** choropleth visualization */
+         #nbt_nta{
+         polygon-fill: #EDF8FB;
+         polygon-opacity: 0.5;
+         line-color: #FFF;
+         line-width: 0;
+         }
+         #nbt_nta [ pl_cg <= 6] {
+         polygon-fill: #006D2C;
+         }
+         #nbt_nta [ pl_cg <= 5] {
+         polygon-fill: #2CA25F;
+         }
+         #nbt_nta [ pl_cg <= 4] {
+         polygon-fill: #66C2A4;
+         }
+         #nbt_nta [ pl_cg <= 3] {
+         polygon-fill: #B2E2E2;
+         }
+         #nbt_nta [ pl_cg <= 2] {
+         polygon-fill: #EDF8FB;
+         }
+         #nbt_nta [ pl_cg <= 1] {
+         polygon-opacity: 0;
+         }
+      </style>
+      <style type="cartocss/text" id="full_crash_yearly_w_activity_css">
+         /** simple visualization */
+         #full_crash_yearly_w_activity{
+         marker-fill-opacity: .75;
+         marker-line-color: #FFF;
+         marker-line-width: 0;
+         marker-placement: point;
+         marker-type: ellipse;
+         marker-width: 5;
+         marker-fill: #FF6600;
+         marker-allow-overlap: true;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <div class="navbar-icon-container">
+                  <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a>
+                  <a href="#" class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i class="fa fa-search fa-lg white"></i></a>
+               </div>
+               <a class="navbar-brand" >Pedestrian Safety Explorer</a>
             </div>
-          </form> -->
-          <ul class="nav navbar-nav">
-            <!-- <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="about-btn"><i class="fa fa-question-circle white"></i>&nbsp;&nbsp;About</a></li> -->
-            <!-- <li class="dropdown">
-              <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-globe white"></i>&nbsp;&nbsp;Tools <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="full-extent-btn"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>
-                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="legend-btn"><i class="fa fa-picture-o"></i>&nbsp;&nbsp;Show Legend</a></li>
-                <li class="divider hidden-xs"></li>
-                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="login-btn"><i class="fa fa-user"></i>&nbsp;&nbsp;Login</a></li>
-              </ul>
-            </li> -->
-            <!-- <li class="dropdown">
-                <a class="dropdown-toggle" id="downloadDrop" href="#" role="button" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cloud-download white"></i>&nbsp;&nbsp;Download <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="data/boroughs.geojson" download="boroughs.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Boroughs</a></li>
-                  <li><a href="data/subways.geojson" download="subways.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Subway Lines</a></li>
-                  <li><a href="data/DOITT_THEATER_01_13SEPT2010.geojson" download="theaters.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Theaters</a></li>
-                  <li><a href="data/DOITT_MUSEUM_01_13SEPT2010.geojson" download="museums.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Museums</a></li>
-                </ul>
-            </li> -->
-            <!-- <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-list white"></i>&nbsp;&nbsp;POI List</a></li> -->
-          </ul>
-        </div><!--/.navbar-collapse -->
+            <div class="navbar-collapse collapse">
+               <!-- <form class="navbar-form navbar-right" role="search">
+                  <div class="form-group has-feedback">
+                      <span class="twitter-typeahead" style="position: static; display: block; direction: ltr;"><input id="searchbox" type="text" placeholder="Search" class="form-control tt-input" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;"><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none; right: auto;"><div class="tt-dataset-Boroughs"></div><div class="tt-dataset-Theaters"></div><div class="tt-dataset-Museums"></div><div class="tt-dataset-GeoNames"></div></span></span>
+                      <span id="searchicon" class="fa fa-search form-control-feedback"></span>
+                  </div>
+                  </form> -->
+               <ul class="nav navbar-nav">
+                  <!-- <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="about-btn"><i class="fa fa-question-circle white"></i>&nbsp;&nbsp;About</a></li> -->
+                  <!-- <li class="dropdown">
+                     <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-globe white"></i>&nbsp;&nbsp;Tools <b class="caret"></b></a>
+                     <ul class="dropdown-menu">
+                       <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="full-extent-btn"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>
+                       <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="legend-btn"><i class="fa fa-picture-o"></i>&nbsp;&nbsp;Show Legend</a></li>
+                       <li class="divider hidden-xs"></li>
+                       <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="login-btn"><i class="fa fa-user"></i>&nbsp;&nbsp;Login</a></li>
+                     </ul>
+                     </li> -->
+                  <!-- <li class="dropdown">
+                     <a class="dropdown-toggle" id="downloadDrop" href="#" role="button" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-cloud-download white"></i>&nbsp;&nbsp;Download <b class="caret"></b></a>
+                     <ul class="dropdown-menu">
+                       <li><a href="data/boroughs.geojson" download="boroughs.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Boroughs</a></li>
+                       <li><a href="data/subways.geojson" download="subways.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Subway Lines</a></li>
+                       <li><a href="data/DOITT_THEATER_01_13SEPT2010.geojson" download="theaters.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Theaters</a></li>
+                       <li><a href="data/DOITT_MUSEUM_01_13SEPT2010.geojson" download="museums.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Museums</a></li>
+                     </ul>
+                     </li> -->
+                  <!-- <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-list white"></i>&nbsp;&nbsp;POI List</a></li> -->
+               </ul>
+            </div>
+            <!--/.navbar-collapse -->
+         </div>
       </div>
-    </div>
+      <div id="container">
+         <div id="sidebar">
+            <div id="street_view"></div>
+            
+               <div class="slider_panel">
+                  <label for="activityAmount">Max Activity Level:</label>
+                  <input type="text" id="activityAmount" readonly>
+                  <div id="activitySlider"></div>
+               </div>
+               <div class="slider_panel">
+                  <label for="injuryAmount">Minimum Pedestrian Injuries:</label>
+                  <input type="text" id="injuryAmount" readonly>
+                  <div id="injurySlider"></div>
+               </div>
+               <div class="slider_panel">
+                  <label for="yearAmount">Earliest Year:</label>
+                  <input type="text" id="yearAmount" readonly>
+                  <div id="yearSlider"></div>
+               </div>
 
-    <div id="container">
-      <div id="sidebar">
-        <div id="street_view"></div>
-        <div class="slider_panel">
-          <label for="activityAmount">Max Activity Level:</label>
-          <input type="text" id="activityAmount" readonly>
-          <div id="activitySlider"></div>
-        </div>
-        <div class="slider_panel">
-          <label for="injuryAmount">Minimum Pedestrian Injuries:</label>
-          <input type="text" id="injuryAmount" readonly>
-          <div id="injurySlider"></div>
-        </div>
-        <div class="slider_panel">
-          <label for="yearAmount">Earliest Year:</label>
-          <input type="text" id="yearAmount" readonly>
-          <div id="yearSlider"></div>
-        </div>
+               <div class="button">
+                  <button id="street_design_toggle"><span>Toggle Street Design</span></button>
+               </div>
+
+          </div>
+               
+            
+            <div id="map"></div>
+            <div class='cartodb-legend choropleth'>
+               <div class="legend-title">Pedestrian Activity Indicator</div>
+               <ul>
+                  <li class="min">
+                     Lowest
+                  </li>
+                  <li class="max">
+                     Highest
+                  </li>
+                  <li class="graph count_315">
+                     <div class="colors">
+                        <div class="quartile" style="background-color:#EDF8FB"></div>
+                        <div class="quartile" style="background-color:#B2E2E2"></div>
+                        <div class="quartile" style="background-color:#66C2A4"></div>
+                        <div class="quartile" style="background-color:#2CA25F"></div>
+                        <div class="quartile" style="background-color:#006D2C"></div>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+         </div>
       </div>
-
-      <div id="map"></div>
-      <div class='cartodb-legend choropleth'> 
-        <div class="legend-title">Pedestrian Activity Indicator</div>
-          <ul>
-            <li class="min">
-              Lowest
-            </li>
-            <li class="max">
-              Highest
-            </li>
-            <li class="graph count_315">
-              <div class="colors">
-                <div class="quartile" style="background-color:#EDF8FB"></div>
-                <div class="quartile" style="background-color:#B2E2E2"></div>
-                <div class="quartile" style="background-color:#66C2A4"></div>
-                <div class="quartile" style="background-color:#2CA25F"></div>
-                <div class="quartile" style="background-color:#006D2C"></div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      
-    </div><!-- /.container -->
-
-   <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
-   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-   <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
-
-    <script>
-       window.onload = main;
-    </script>
-
-    <script async defer
-         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEp-EJxOrFXlA5O4ye4dyegwiYu43VTTo">
-    </script>
-  </body>
+      <!-- /.container -->
+      <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+      <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+      <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="js/script.js"></script>
+      <script>
+         window.onload = main;
+      </script>
+      <script async defer
+         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEp-EJxOrFXlA5O4ye4dyegwiYu43VTTo"></script>
+   </body>
 </html>
