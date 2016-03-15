@@ -38,31 +38,63 @@ var layerSource_street_design = {
   type: 'cartodb',
   sublayers: [{
     sql: "SELECT * FROM speed_bumps_2014",
-    cartocss: "#speed_bumps_2014{ line-color: #081B47; line-width: 2; line-opacity: 0.5; }"
+    cartocss: "#speed_bumps_2014{ line-color: #081B47; line-width: 2; line-opacity: 0.5; }"//,
+    //interactivity: "intervention_type"
   },
   {
     sql: "SELECT * FROM safe_streets_for_seniors_1",
-    cartocss: "#safe_streets_for_seniors_1{ polygon-fill: #081B47; polygon-opacity: 0.5; line-width: 0; }"
+    cartocss: "#safe_streets_for_seniors_1{ polygon-fill: #081B47; polygon-opacity: 0.5; line-width: 0; }"//,
+    //interactivity: "intervention_type"
   },
   {
     sql: "SELECT * FROM street_improvement_projects_2013_2014_intersections",
-    cartocss: "#street_improvement_projects_2013_2014_intersections{ marker-fill-opacity: 0.5; marker-line-width: 0; marker-width: 5; marker-fill: #081B47; marker-allow-overlap: true; }"
+    cartocss: "#street_improvement_projects_2013_2014_intersections{ marker-fill-opacity: 0.5; marker-line-width: 0; marker-width: 5; marker-fill: #081B47; marker-allow-overlap: true; }"//,
+    //interactivity: "intervention_type"
   },
   {
     sql: "SELECT * FROM street_improvement_projects_2013_2014_corridors",
-    cartocss: "#street_improvement_projects_2013_2014_corridors{ line-color: #081B47; line-width: 2; line-opacity: 0.5; }"
+    cartocss: "#street_improvement_projects_2013_2014_corridors{ line-color: #081B47; line-width: 2; line-opacity: 0.5; }"//,
+    //interactivity: "intervention_type"
   },
   {
     sql: "SELECT * FROM arterial_slow_zones",
-    cartocss: "#arterial_slow_zones{ line-color: #081B47; line-width: 2; line-opacity: 0.5; }"
+    cartocss: "#arterial_slow_zones{ line-color: #081B47; line-width: 2; line-opacity: 0.5; }"//,
+    //interactivity: "intervention_type"
   },
   {
     sql: "SELECT * FROM leading_pedestrian_interval_signals",
-    cartocss: "#leading_pedestrian_interval_signals{ marker-fill-opacity: 0.5; marker-line-width: 0; marker-width: 5; marker-fill: #081B47; marker-allow-overlap: true; }"
+    cartocss: "#leading_pedestrian_interval_signals{ marker-fill-opacity: 0.5; marker-line-width: 0; marker-width: 5; marker-fill: #081B47; marker-allow-overlap: true; }"//,
+    //interactivity: "intervention_type"
   },
   {
     sql: "SELECT * FROM neighborhood_slow_zones",
-    cartocss: "#neighborhood_slow_zones{ polygon-fill: #081B47; polygon-opacity: 0.5; line-width: 0; }"
+    cartocss: "#neighborhood_slow_zones{ polygon-fill: #081B47; polygon-opacity: 0.5; line-width: 0; }"//,
+    //interactivity: "intervention_type"
+  }]
+};
+
+var layerSource_pi = {
+  user_name: 'dmarulli',
+  type: 'cartodb',
+  sublayers: [{
+    sql: "SELECT * FROM pi_si_geod",
+    cartocss: "#pi_si_geod{ marker-fill-opacity: 0.75; marker-width: 5; marker-line-width: 0; marker-fill: #A53ED5; }"
+  },
+  {
+    sql: "SELECT * FROM pi_mn_geod",
+    cartocss: "#pi_mn_geod{ marker-fill-opacity: 0.75; marker-width: 5; marker-line-width: 0; marker-fill: #A53ED5; }"
+  },
+  {
+    sql: "SELECT * FROM pi_qn_geod",
+    cartocss: "#pi_qn_geod{ marker-fill-opacity: 0.75; marker-width: 5; marker-line-width: 0; marker-fill: #A53ED5; }"
+  },
+  {
+    sql: "SELECT * FROM pi_bk_geod",
+    cartocss: "#pi_bk_geod{ marker-fill-opacity: 0.75; marker-width: 5; marker-line-width: 0; marker-fill: #A53ED5; }"
+  },
+  {
+    sql: "SELECT * FROM pi_bx_geod",
+    cartocss: "#pi_bx_geod{ marker-fill-opacity: 0.75; marker-width: 5; marker-line-width: 0; marker-fill: #A53ED5; }"
   }]
 };
 
@@ -71,6 +103,7 @@ var layerSource_street_design = {
 
   // For storing the sublayers
   var sublayers = [];
+  var sublayers_design = []
 
   // Pull tiles from OpenStreetMap
   L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png', {
@@ -84,10 +117,26 @@ var layerSource_street_design = {
       // do stuff
     });
 
+  cartodb.createLayer(map,layerSource_pi)
+    .addTo(map, 3)
+    .done(function(layer) {
+      // do stuff
+      layer.hide();
+        $("#priority_locations_toggle").on('click', function() {
+          layer.toggle()
+        })
+        
+    });
+
   cartodb.createLayer(map,layerSource_street_design)
       .addTo(map, 2)
       .done(function(layer) {
         // do stuff
+        // for (var i = 0; i < layer.getSubLayerCount(); i++) {
+        // sublayers_design[i] = layer.getSubLayer(i);
+        // cartodb.vis.Vis.addInfowindow(map, sublayers_design[i], ['intervention_type']);
+      // };
+        layer.hide();
         $("#street_design_toggle").on('click', function() {
           layer.toggle()
         })
@@ -108,7 +157,7 @@ var layerSource_street_design = {
 
       sublayers[0].setInteraction(true)
       sublayers[0].on('featureClick', function(e, latlng, pos, data) {
-          console.log(data)
+          console.log(latlng)
           
           var panorama;
           panorama = new google.maps.StreetViewPanorama(
