@@ -164,6 +164,14 @@ var layerSource_street_design = {
             document.getElementById('street_view'),
             {
               position: {lat: latlng[0], lng: latlng[1]},
+              disableDefaultUI: true,
+              imageDateControl: true,
+              fullscreenControl: true,
+              linksControl: true,
+              imageDateControl: true,
+              addressControl: false,
+              panControl: true,
+              zoomControl: false,
               pov: {heading: 165, pitch: 0},
               zoom: 1
             });
