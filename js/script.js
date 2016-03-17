@@ -73,30 +73,30 @@ var layerSource_street_design = {
   }]
 };
 
-var layerSource_pi = {
-  user_name: 'dmarulli',
-  type: 'cartodb',
-  sublayers: [{
-    sql: "SELECT * FROM pi_si_geod",
-    cartocss: "#pi_si_geod{ marker-fill-opacity: 0.75; marker-width: 5; marker-line-width: 0; marker-fill: #A53ED5; }"
-  },
-  {
-    sql: "SELECT * FROM pi_mn_geod",
-    cartocss: "#pi_mn_geod{ marker-fill-opacity: 0.75; marker-width: 5; marker-line-width: 0; marker-fill: #A53ED5; }"
-  },
-  {
-    sql: "SELECT * FROM pi_qn_geod",
-    cartocss: "#pi_qn_geod{ marker-fill-opacity: 0.75; marker-width: 5; marker-line-width: 0; marker-fill: #A53ED5; }"
-  },
-  {
-    sql: "SELECT * FROM pi_bk_geod",
-    cartocss: "#pi_bk_geod{ marker-fill-opacity: 0.75; marker-width: 5; marker-line-width: 0; marker-fill: #A53ED5; }"
-  },
-  {
-    sql: "SELECT * FROM pi_bx_geod",
-    cartocss: "#pi_bx_geod{ marker-fill-opacity: 0.75; marker-width: 5; marker-line-width: 0; marker-fill: #A53ED5; }"
-  }]
-};
+// var layerSource_pi = {
+//   user_name: 'dmarulli',
+//   type: 'cartodb',
+//   sublayers: [{
+//     sql: "SELECT * FROM pi_si_geod",
+//     cartocss: "#pi_si_geod{ marker-fill-opacity: 0.75; marker-width: 5; marker-line-width: 0; marker-fill: #A53ED5; }"
+//   },
+//   {
+//     sql: "SELECT * FROM pi_mn_geod",
+//     cartocss: "#pi_mn_geod{ marker-fill-opacity: 0.75; marker-width: 5; marker-line-width: 0; marker-fill: #A53ED5; }"
+//   },
+//   {
+//     sql: "SELECT * FROM pi_qn_geod",
+//     cartocss: "#pi_qn_geod{ marker-fill-opacity: 0.75; marker-width: 5; marker-line-width: 0; marker-fill: #A53ED5; }"
+//   },
+//   {
+//     sql: "SELECT * FROM pi_bk_geod",
+//     cartocss: "#pi_bk_geod{ marker-fill-opacity: 0.75; marker-width: 5; marker-line-width: 0; marker-fill: #A53ED5; }"
+//   },
+//   {
+//     sql: "SELECT * FROM pi_bx_geod",
+//     cartocss: "#pi_bx_geod{ marker-fill-opacity: 0.75; marker-width: 5; marker-line-width: 0; marker-fill: #A53ED5; }"
+//   }]
+// };
 
 
     
@@ -117,16 +117,16 @@ var layerSource_pi = {
       // do stuff
     });
 
-  cartodb.createLayer(map,layerSource_pi)
-    .addTo(map, 3)
-    .done(function(layer) {
-      // do stuff
-      layer.hide();
-        $("#priority_locations_toggle").on('click', function() {
-          layer.toggle()
-        })
+  // cartodb.createLayer(map,layerSource_pi)
+  //   .addTo(map, 3)
+  //   .done(function(layer) {
+  //     // do stuff
+  //     layer.hide();
+  //       $("#priority_locations_toggle").on('click', function() {
+  //         layer.toggle()
+  //       })
         
-    });
+  //   });
 
   cartodb.createLayer(map,layerSource_street_design)
       .addTo(map, 2)
