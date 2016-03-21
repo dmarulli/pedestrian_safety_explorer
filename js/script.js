@@ -106,7 +106,7 @@ var layerSource_street_design = {
   var sublayers_design = []
 
   // Pull tiles from OpenStreetMap
-  L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png', {
+  L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
     }).addTo(map);
 
@@ -115,6 +115,32 @@ var layerSource_street_design = {
     .addTo(map, 0)
     .done(function(layer) {
       // do stuff
+       var legend = new cdb.geo.ui.Legend({
+           type: "custom",
+
+           data: [
+             { name: "Pedestrian Injury Locations", value: "#FF6600" },
+             //{ name: "Safety Interventions", value:"#081B47"}
+           ]
+         });
+         var choropleth = new cdb.geo.ui.Legend({
+           type: "choropleth",
+           show_title: true,
+           title: "Pedestrian Activity Indicator",
+           data: [
+             { value: "Lowest" },
+             { value: "Highest" },
+             { name: "color1", value: "#EDF8FB" },
+             { name: "color2", value: "#B2E2E2" },
+             { name: "color3", value: "#66C2A4" },
+             { name: "color2", value: "#2CA25F" },
+             { name: "color2", value: "#006D2C" }
+           ]
+         });
+         var stackedLegend = new cdb.geo.ui.StackedLegend({
+           legends: [legend, choropleth]
+         });
+         $('#map').append(stackedLegend.render().el);
     });
 
   // cartodb.createLayer(map,layerSource_pi)
@@ -171,6 +197,7 @@ var layerSource_street_design = {
               imageDateControl: true,
               addressControl: false,
               panControl: true,
+              enableCloseButton: true,
               zoomControl: false,
               pov: {heading: 165, pitch: 0},
               zoom: 1
@@ -199,11 +226,14 @@ var layerSource_street_design = {
   $( "#yearSlider" ).slider({
     range: "max",
     value: 2014, // would be better if programatic
+    //range: "range",
+    //values: [2009, 2015],
     min: 2009, // would be better if programatic
     max: 2015, // would be better if programatic
     slide: function( event, ui ) {
       $( "#yearAmount" ).val(ui.value);
       min_year = ui.value
+      //years = ui.values
       min_injuries = $( "#injurySlider" ).slider( "value" )
       max_activity = $( "#activitySlider" ).slider( "value" )
       query = "SELECT * FROM full_crash_yearly_w_activity WHERE (yr >= " + min_year + " AND pedinjurie >= " + min_injuries+ "AND pl_cg <= " + max_activity + ")";

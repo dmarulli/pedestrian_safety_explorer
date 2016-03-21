@@ -46,9 +46,21 @@
          marker-line-width: 0;
          marker-placement: point;
          marker-type: ellipse;
-         marker-width: 5;
+         marker-width: 2.5;
          marker-fill: #FF6600;
          marker-allow-overlap: true;
+         }
+         #full_crash_yearly_w_activity [zoom > 10] {
+         marker-width: 3.5;
+         }
+         #full_crash_yearly_w_activity [zoom > 11] {
+         marker-width: 4.5;
+         }
+         #full_crash_yearly_w_activity [zoom > 12] {
+         marker-width: 5.5;
+         }
+         #full_crash_yearly_w_activity [zoom > 13] {
+         marker-width: 6.5;
          }
       </style>
    </head>
@@ -97,8 +109,20 @@
       </div>
       <div id="container">
          <div id="sidebar">
-            <div id="street_view"></div>
-            
+            <div id="street_view">
+               <!-- <div id="explanation">
+                  <p>This tool allows planners and advocates explore locations of pedestrian injuries in NYC.</p>
+                  <p>The sliders below to filter pedestrian injuries by</p> 
+                  <ul>
+                     <li>Neighborhood pedestrian activity level</li>
+                     <li>Number of injuries</li>
+                     <li>Year</li>
+                  </ul>
+                  <p>Use the safety intervention toogle button to display projects</p>
+                  <p>Zoom to an injury location and click to display a street level view</p>
+                  </div> -->
+            </div>
+            <div id='dashboard'>
                <div class="slider_panel">
                   <label for="activityAmount">Max Activity Level:</label>
                   <input type="text" id="activityAmount" readonly>
@@ -114,37 +138,15 @@
                   <input type="text" id="yearAmount" readonly>
                   <div id="yearSlider"></div>
                </div>
-
                <div class="button">
                   <button id="street_design_toggle"><span>Toggle Safety Interventions</span></button>
                   <!-- <button id="priority_locations_toggle"><span>Toggle Priority Locations</span></button> -->
                </div>
-
-          </div>
-               
-            
-            <div id="map"></div>
-            <div class='cartodb-legend choropleth'>
-               <div class="legend-title">Pedestrian Activity Indicator</div>
-               <ul>
-                  <li class="min">
-                     Lowest
-                  </li>
-                  <li class="max">
-                     Highest
-                  </li>
-                  <li class="graph count_315">
-                     <div class="colors">
-                        <div class="quartile" style="background-color:#EDF8FB"></div>
-                        <div class="quartile" style="background-color:#B2E2E2"></div>
-                        <div class="quartile" style="background-color:#66C2A4"></div>
-                        <div class="quartile" style="background-color:#2CA25F"></div>
-                        <div class="quartile" style="background-color:#006D2C"></div>
-                     </div>
-                  </li>
-               </ul>
             </div>
          </div>
+         <div id="map"></div>
+         
+ 
       </div>
       <!-- /.container -->
       <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
